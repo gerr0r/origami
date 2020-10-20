@@ -2,10 +2,10 @@ import React from 'react'
 import styles from './link.module.css'
 
 const Link = (props) => {
-	const { href, title } = props
+	const { href, title, type } = props
 	return (
-		<li className={styles["header-list-item"]}>
-			<a href={href} className={styles["header-link"]}>{title}</a>
+		<li className={styles[`${type}-list-item`]}>
+			<a href={href} className={styles[`${type}-link`]}>{title}</a>
 		</li>
 	)
 }
