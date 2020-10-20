@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './components/header/Header'
 import Aside from './components/aside/Aside'
 import Origamies from './components/origamies/Origamies'
+import Footer from "./components/footer/Footer"
 import styles from './app.module.css'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Aside />
         <Origamies />
       </div>
+      <Footer />
     </div>
   );
 }
