@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './components/header/Header'
 import Aside from './components/aside/Aside'
+import Origamies from './components/origamies/Origamies'
 import styles from './app.module.css'
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <Header />
       <div className={styles.container}>
         <Aside />
+        <Origamies />
       </div>
     </div>
   );
