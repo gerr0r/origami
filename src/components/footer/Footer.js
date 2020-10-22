@@ -2,17 +2,15 @@ import React from 'react'
 import Link from '../link/Link'
 import styles from './footer.module.css'
 import logo from "../../images/blue-origami-bird-flipped.png"
+import getLinks from "../../helpers/anchors"
 
 const Footer = () => {
-	const location = "footer"
+	const links = getLinks()
+	const location = "footer";
 	return (
 		<footer className={styles.footer}>
 			<ul>
-				<Link href="#" title="Publications" location={location} />
-				<Link href="#" title="Post" location={location} />
-				<Link href="#" title="Register" location={location} />
-				<Link href="#" title="Login" location={location} />
-				<Link href="#" title="Profile" location={location} />
+				{links.map(link => <Link href={link.path} title={link.name} location={location} />)}
 			</ul>
 			<img className={styles.logo} src={logo} alt="logo" />
 			<p className={styles.reserved}>All rights reserved 2020</p>

@@ -1,17 +1,15 @@
-import React from 'react'
+import React from "react"
 import Link from "../link/Link"
-import styles from './aside.module.css'
+import styles from "./aside.module.css"
+import getLinks from "../../helpers/anchors"
 
 const Aside = () => {
-	const location = "aside";
+	const links = getLinks()
+	const location = "aside"
 	return (
 		<aside className={styles.container}>
 			<ul>
-				<Link href="#" title="Publications" location={location}/>
-				<Link href="#" title="Post" location={location}/>
-				<Link href="#" title="Register" location={location}/>
-				<Link href="#" title="Login" location={location}/>
-				<Link href="#" title="Profile" location={location}/>
+				{links.map(link => <Link href={link.path} title={link.name} location={location} />)}
 			</ul>
 		</aside>
 	)
