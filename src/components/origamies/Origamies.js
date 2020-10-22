@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Origami from "../origami/Origami"
 import styles from './origamies.module.css'
+import Title from "../title/title"
 
 class Origamies extends React.Component {
 	constructor(props) {
@@ -21,11 +22,11 @@ class Origamies extends React.Component {
 
 	renderOrigamies = () => {
 		const { origamies } = this.state
-		
+
 		return origamies.map((origami, idx) => {
 			return (
-				<Origami key={origami._id} index={idx} {...origami}/>
-				
+				<Origami key={origami._id} index={idx} {...origami} />
+
 			)
 		})
 	}
@@ -36,12 +37,12 @@ class Origamies extends React.Component {
 
 	render() {
 		return (
-			<div className={styles.container}>
-				<h1 className={styles.title}>Origamies</h1>
+			<Fragment>
+				<Title title="Publications" />
 				<div className={styles["origamies-wrapper"]}>
 					{this.renderOrigamies()}
 				</div>
-			</div>
+			</Fragment>
 		)
 	}
 }

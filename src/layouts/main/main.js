@@ -10,7 +10,9 @@ const MainLayout = (props) => {
       <Header />
       <div className={styles.container}>
         <Aside />
-        {props.children}
+        <div className={styles.content}>
+          {props.children}
+        </div>
       </div>
       <Footer />
     </div>
