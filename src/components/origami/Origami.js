@@ -3,13 +3,13 @@ import styles from './origami.module.css'
 import logo from "../../images/blue-origami-bird.png"
 
 const Origami = (props) => {
-	const { description, author } = props
+	const { description, author, index } = props
 
 	return (
 		<div className={styles.container}>
-			<img className={styles.logo} src={logo} alt=""/>
+			<img className={styles.logo} src={logo} alt="" />
 			<p className={styles.description}>
-				{description}
+				{index} - {description}
 			</p>
 			<div>
 				<span className={styles.user}>
