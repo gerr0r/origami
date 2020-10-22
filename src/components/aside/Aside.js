@@ -2,18 +2,16 @@ import React from 'react'
 import Link from "../link/Link"
 import styles from './aside.module.css'
 
-const Aside = (props) => {
-
+const Aside = () => {
+	const location = "aside";
 	return (
 		<aside className={styles.container}>
 			<ul>
-				<Link href="#" title="Going to 1" type="aside"/>
-				<Link href="#" title="Going to 2" type="aside"/>
-				<Link href="#" title="Going to 3" type="aside"/>
-				<Link href="#" title="Going to 4" type="aside"/>
-				<Link href="#" title="Going to 5" type="aside"/>
-				<Link href="#" title="Going to 6" type="aside"/>
-				<Link href="#" title="Going to 7" type="aside"/>
+				<Link href="#" title="Publications" location={location}/>
+				<Link href="#" title="Post" location={location}/>
+				<Link href="#" title="Register" location={location}/>
+				<Link href="#" title="Login" location={location}/>
+				<Link href="#" title="Profile" location={location}/>
 			</ul>
 		</aside>
 	)
