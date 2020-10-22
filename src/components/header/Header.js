@@ -4,17 +4,16 @@ import styles from './header.module.css'
 import logo from "../../images/white-origami-bird.png"
 
 const Header = () => {
+    const location = "header"
     return (
         <header className={styles.navigation}>
-            <img className={styles.logo} src={logo} alt="logo-image"/>
+            <img className={styles.logo} src={logo} alt="logo" />
             <ul>
-                <Link href="#" title="Going to 1" type="header"/>
-                <Link href="#" title="Going to 2" type="header"/>
-                <Link href="#" title="Going to 3" type="header"/>
-                <Link href="#" title="Going to 4" type="header"/>
-                <Link href="#" title="Going to 5" type="header"/>
-                <Link href="#" title="Going to 6" type="header"/>
-                <Link href="#" title="Going to 7" type="header"/>
+                <Link href="#" title="Publications" location={location} />
+                <Link href="#" title="Post" location={location} />
+                <Link href="#" title="Register" location={location} />
+                <Link href="#" title="Login" location={location} />
+                <Link href="#" title="Profile" location={location} />
             </ul>
         </header>
     )
