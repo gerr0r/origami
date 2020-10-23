@@ -37,12 +37,12 @@ class Origamies extends React.Component {
 
 	render() {
 		return (
-			<Fragment>
+			<main className={styles.main}>
 				<Title title="Publications" />
 				<div className={styles["origamies-wrapper"]}>
 					{this.renderOrigamies()}
 				</div>
-			</Fragment>
+			</main>
 		)
 	}
 }
