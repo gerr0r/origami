@@ -1,4 +1,11 @@
-.origamies-wrapper {
+.main {
+    display: inline-block;
+    width: 83%;
+    height: auto;
+    margin-bottom: 5%;
+}
+
+.posts {
     width: 100%;
     height: 45vh;
 }

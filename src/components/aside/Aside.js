@@ -7,7 +7,7 @@ const Aside = () => {
 	const links = getLinks()
 	const location = "aside"
 	return (
-		<aside className={styles.container}>
+		<aside className={styles.aside}>
 			<ul>
 				{links.map(link => <Link href={link.path} title={link.name} location={location} />)}
 			</ul>

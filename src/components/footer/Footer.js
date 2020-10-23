@@ -9,10 +9,10 @@ const Footer = () => {
 	const location = "footer";
 	return (
 		<footer className={styles.footer}>
+			<img className={styles.logo} src={logo} alt="logo" />
 			<ul>
 				{links.map(link => <Link href={link.path} title={link.name} location={location} />)}
 			</ul>
-			<img className={styles.logo} src={logo} alt="logo" />
 			<p className={styles.reserved}>All rights reserved 2020</p>
 		</footer>
 	)

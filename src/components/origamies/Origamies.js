@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Origami from "../origami/Origami"
 import styles from './origamies.module.css'
 import Title from "../title/title"
@@ -37,12 +37,12 @@ class Origamies extends React.Component {
 
 	render() {
 		return (
-			<Fragment>
+			<main className={styles.main}>
 				<Title title="Publications" />
-				<div className={styles["origamies-wrapper"]}>
+				<div className={styles.posts}>
 					{this.renderOrigamies()}
 				</div>
-			</Fragment>
+			</main>
 		)
 	}
 }

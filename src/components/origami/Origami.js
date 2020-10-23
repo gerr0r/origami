@@ -6,14 +6,14 @@ const Origami = (props) => {
 	const { description, author, index } = props
 
 	return (
-		<div className={styles.container}>
-			<img className={styles.logo} src={logo} alt="" />
+		<div className={styles.post}>
+			<img className={styles.logo} src={logo} alt="Origami logo" />
 			<p className={styles.description}>
 				{index} - {description}
 			</p>
-			<div>
-				<span className={styles.user}>
-					<small>Author:</small>
+			<div className={styles.author}>
+				<span >
+					<small>Author: </small>
 					{author.username}
 				</span>
 			</div>
