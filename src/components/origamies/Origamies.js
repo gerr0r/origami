@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Origami from "../origami/Origami"
 import styles from './origamies.module.css'
 import Title from "../title/title"

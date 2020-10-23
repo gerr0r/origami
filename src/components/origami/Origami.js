@@ -7,7 +7,7 @@ const Origami = (props) => {
 
 	return (
 		<div className={styles.post}>
-			<img className={styles.logo} src={logo} alt="" />
+			<img className={styles.logo} src={logo} alt="Origami logo" />
 			<p className={styles.description}>
 				{index} - {description}
 			</p>

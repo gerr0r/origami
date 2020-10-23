@@ -7,22 +7,16 @@
 }
   
 .description {
-  word-wrap: break-word;
-  padding: 0.5%;
+  padding: 1% 1% 0;
   font-style: italic;
-  margin-bottom: 0.5%;
-  width: 95%;
-  height: auto;
-  display: inline-block;
-  vertical-align: top;
+  text-align: justify;
 }
 
 .author {
   text-decoration: underline;
   font-weight: bold;
   text-align: right;
-  padding-right: 1%;
-  padding-bottom: 1%;
+  padding: 0 1% 1% 1%;
 }
 
 .author small {
@@ -30,6 +24,8 @@
 }
 
 .logo {
+  padding: 1%;
+  float: left;
   width: 32px;
   height: 32px;
 }
