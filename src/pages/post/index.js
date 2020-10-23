@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/main/main"
 import Title from "../../components/title/title"
 import SubmitButton from "../../components/buttons/submit"
 import styles from "./index.module.css"
+import Origamies from "../../components/origamies/Origamies"
 
 const PostPage = () => {
     return (
@@ -15,6 +16,7 @@ const PostPage = () => {
                 </div>
                 <div>
                     <h2>Last 3 posts on your wall</h2>
+                    <Origamies location="posts" />
                 </div>
             </div>
         </MainLayout>
