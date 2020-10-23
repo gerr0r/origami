@@ -8,9 +8,14 @@ const PostPage = () => {
     return (
         <MainLayout>
             <div className={styles.input}>
-                <Title title="Share your thoughts..." />
-                <textarea placeholder="Your thoughts here..." cols="30" rows="10"></textarea>
-                <SubmitButton name="Post" />
+                <div>
+                    <Title title="Share your thoughts..." />
+                    <textarea className={styles.textarea} placeholder="Your thoughts here..."></textarea>
+                    <SubmitButton name="Post" />
+                </div>
+                <div>
+                    <h2>Last 3 posts on your wall</h2>
+                </div>
             </div>
         </MainLayout>
     )
