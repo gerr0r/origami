@@ -6,7 +6,8 @@ const PostPage = () => {
     return (
         <MainLayout>
             <Title title="Share your thoughts..." />
-            <div>PostPage</div>
+            <textarea placeholder="Your thoughts here..." cols="30" rows="10"></textarea>
+            <button>Post</button>
         </MainLayout>
     )
 }
