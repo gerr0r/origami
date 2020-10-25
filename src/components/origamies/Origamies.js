@@ -21,7 +21,7 @@ class Origamies extends React.Component {
 
 	renderOrigamies = () => {
 		let { origamies } = this.state
-		if (this.props.location === "posts") {
+		if (this.props.location === "posts" || this.props.location === "profile") {
 			origamies = origamies.slice(origamies.length - 3);
 		}
 
