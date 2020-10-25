@@ -11,7 +11,7 @@ const Nav = () => {
         <nav className={styles.navigation}>
             <img className={styles.logo} src={logo} alt="logo" />
             <ul>
-            {links.map(link => <Link href={link.path} title={link.name} location={location} />)}
+            {links.map(link => <Link key={link.name} href={link.path} title={link.name} location={location} />)}
             </ul>
         </nav>
     )
