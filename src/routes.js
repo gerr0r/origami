@@ -14,7 +14,7 @@ const Routes = () => {
                 <Route path="/post" component={PostPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/login" component={LoginPage} />
-                <Route path="/profile" component={ProfilePage} />
+                <Route path="/profile/:uid" component={ProfilePage} />
             </Switch>
         </BrowserRouter>
     )
