@@ -9,7 +9,7 @@ const Aside = () => {
 	return (
 		<aside className={styles.aside}>
 			<ul>
-				{links.map(link => <Link href={link.path} title={link.name} location={location} />)}
+				{links.map(link => <Link key={link.name} href={link.path} title={link.name} location={location} />)}
 			</ul>
 		</aside>
 	)

@@ -15,14 +15,16 @@ class ProfilePage extends React.Component {
 
     getInfo = async (id) => {
         const fetch_ = await fetch(`http://localhost:9999/api/user?id=${id}`)
+
+        if (!fetch_.ok) this.props.history.push("/error")
         const data = await fetch_.json()
 
         this.setState({
             name: data.username,
             posts: data.posts.length
         })
-
     }
+
     componentDidMount() {
         this.getInfo(this.props.match.params.uid)
     }
@@ -33,8 +35,8 @@ class ProfilePage extends React.Component {
                 <div className={styles.profile}>
                     <img src={img} alt="Profile" />
                     <div className={styles["personal-info"]}>
-                        <p><span>Name: </span>{this.state.name}</p>
-                        <p><span>Posts: </span>{this.state.posts}</p>
+                        <p><span>Name: </span>{this.state.name || "Loading..."}</p>
+                        <p><span>Posts: </span>{this.state.posts || "Loading..."}</p>
                     </div>
                     <div>
                         <h2>3 of your recent posts</h2>
