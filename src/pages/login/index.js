@@ -16,7 +16,6 @@ class LoginPage extends React.Component {
 
     checkLogin = e => {
         e.preventDefault()
-        console.log(this.state)
 
         fetch("http://localhost:9999/api/user/login", {
             method: "POST",
