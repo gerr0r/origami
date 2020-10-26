@@ -3,9 +3,9 @@ import styles from "./form.module.css"
 
 const Form = (props) => {
     return (
-        <div className={styles.forms}>
+        <form className={styles.forms} onSubmit={props.onSubmit}>
             {props.children}
-        </div>
+        </form>
     )
 }
 
