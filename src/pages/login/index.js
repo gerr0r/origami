@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/main/main"
 import Form from "../../components/form/form"
 import Title from "../../components/title/title"
 import FormControl from "../../components/form-control/form-control"
+import AuthContext from "../../authentication/context"
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -13,6 +14,8 @@ class LoginPage extends React.Component {
             password: ""
         }
     }
+
+    static contextType = AuthContext
 
     checkLogin = e => {
         e.preventDefault()
@@ -34,6 +37,10 @@ class LoginPage extends React.Component {
             return res.json()
         })
         .then(data => {
+            this.context.logIn({
+                username: data.username,
+                id: data._id
+            })
             this.props.history.push("/")
         })
         .catch(err => {
