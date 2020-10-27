@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/main/main"
 import Title from "../../components/title/title"
 import FormControl from "../../components/form-control/form-control"
 import Form from "../../components/form/form"
+import AuthContext from "../../authentication/context"
 
 class RegisterPage extends React.Component {
     constructor(props) {
@@ -15,9 +16,10 @@ class RegisterPage extends React.Component {
         }
     }
 
+    static contextType = AuthContext
+
     checkLogin = e => {
         e.preventDefault()
-        console.log(this.state)
 
         fetch("http://localhost:9999/api/user/register", {
             method: "POST",
@@ -39,6 +41,10 @@ class RegisterPage extends React.Component {
             }
         })
         .then(data => {
+            this.context.logIn({
+                username: data.username,
+                id: data._id
+            })
             this.props.history.push("/")
         })
         .catch(err => {

@@ -3,12 +3,13 @@
 .nav-link {
   color: white;
   text-decoration: none;
+  padding: 10px 0px;
 }
 
 .nav-list-item {
   display: inline-block;
   cursor: pointer;
-  padding: 10px;
+  padding: 10px 0px;
   margin: 20px;
   border-top: 2px solid #ffa000;
 }
@@ -52,9 +53,10 @@
   border-top: 2px solid white;
   border-bottom: 2px solid white;
   margin-bottom: 10px;
-  padding-top: 10px;
+  padding-top: 20px;
   height: 5vh;
   text-align: center;
+  /* border: 1px solid red; */
 }
 
 
