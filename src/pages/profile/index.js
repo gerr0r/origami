@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/main/main"
 import img from "../../images/profile_image.svg"
 import Origamies from '../../components/origamies/Origamies'
 import styles from "./index.module.css"
+import AuthContext from '../../authentication/context'
 
 class ProfilePage extends React.Component {
     constructor(props) {
@@ -13,6 +14,8 @@ class ProfilePage extends React.Component {
         }
     }
 
+    static contextType = AuthContext
+
     getInfo = async (id) => {
         const fetch_ = await fetch(`http://localhost:9999/api/user?id=${id}`)
 
@@ -21,8 +24,13 @@ class ProfilePage extends React.Component {
 
         this.setState({
             name: data.username,
-            posts: data.posts.length
+            posts: data.posts.length.toString()
         })
+    }
+
+    logOut = () => {
+        this.context.logOut()
+        this.props.history.push("/")
     }
 
     componentDidMount() {
@@ -37,6 +45,7 @@ class ProfilePage extends React.Component {
                     <div className={styles["personal-info"]}>
                         <p><span>Name: </span>{this.state.name || "Loading..."}</p>
                         <p><span>Posts: </span>{this.state.posts || "Loading..."}</p>
+                        <button onClick={this.logOut}>Logout</button>
                     </div>
                     <div>
                         <h2>3 of your recent posts</h2>
