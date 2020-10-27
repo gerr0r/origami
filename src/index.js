@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Auth from "./authorisation";
+import Auth from "./authentication";
 import "./index.css";
 import Routes from "./routes"
 
