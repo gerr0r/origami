@@ -6,7 +6,7 @@ class Auth extends React.Component {
         super(props)
 
         this.state = {
-            authenticated: false,
+            authenticated: null,
             user: null
         }
     }
@@ -23,10 +23,62 @@ class Auth extends React.Component {
             authenticated: false,
             user: null
         })
-        document.cookie = "x-auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "x-auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    }
+
+    getCookie = (cookie) => {
+        const cookies = {}
+        const cookiesString = document.cookie.split("; ")
+        cookiesString.forEach(c => {
+            let [name, value] = c.split("=")
+            cookies[name] = value
+        })
+        return cookies[cookie]
+    }
+
+    componentDidMount() {
+        const token = this.getCookie("x-auth-token")
+
+        if (!token) {
+            this.logOut()
+            return
+        }
+
+        fetch("http://localhost:9999/api/user/verify",{
+            method: "POST",
+            body: JSON.stringify({
+                token
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => {
+
+            console.log(res);
+            if (!res.ok) {
+                this.logOut()
+                return
+            }
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
+            if (data.status) {
+                this.logIn({
+                    user: data.user.username,
+                    id: data.user._id
+                })
+            } else {
+                this.logOut()
+            }
+        })
     }
 
     render() {
+        if (this.state.authenticated === null) {
+            return <div>Please wait...</div>
+        }
         return (
             <AuthContext.Provider value={{
                 authenticated: this.state.authenticated,
