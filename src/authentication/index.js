@@ -1,32 +1,22 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import AuthContext from "./context"
 
-class Auth extends React.Component {
-    constructor(props) {
-        super(props)
+const Auth = (props) => {
+    const [user, setUser] = useState(null)
+    const [authenticated, setAuth] = useState(null)
 
-        this.state = {
-            authenticated: null,
-            user: null
-        }
+    const logIn = user => {
+        setUser(user)
+        setAuth(true)
     }
 
-    logIn = user => {
-        this.setState({
-            authenticated: true,
-            user
-        })
+    const logOut = () => {
+        setUser(null)
+        setAuth(false)
+        document.cookie = "x-auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure"
     }
 
-    logOut = () => {
-        this.setState({
-            authenticated: false,
-            user: null
-        })
-        document.cookie = "x-auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-    }
-
-    getCookie = (cookie) => {
+    const getCookie = (cookie) => {
         const cookies = {}
         const cookiesString = document.cookie.split("; ")
         cookiesString.forEach(c => {
@@ -36,60 +26,54 @@ class Auth extends React.Component {
         return cookies[cookie]
     }
 
-    componentDidMount() {
-        const token = this.getCookie("x-auth-token")
+    useEffect(() => {
+        const token = getCookie("x-auth-token")
 
         if (!token) {
-            this.logOut()
+            logOut()
             return
         }
 
-        fetch("http://localhost:9999/api/user/verify",{
-            method: "POST",
-            body: JSON.stringify({
-                token
-            }),
+        fetch("http://localhost:9999/api/user/verify", {
+            method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": token
             }
-        })
-        .then(res => {
-
-            console.log(res);
+        }).then(res => {
+            // console.log(res)
             if (!res.ok) {
-                this.logOut()
+                logOut()
                 return
             }
             return res.json()
-        })
-        .then(data => {
-            console.log(data)
+        }).then(data => {
+            // console.log(data)
             if (data.status) {
-                this.logIn({
+                logIn({
                     user: data.user.username,
                     id: data.user._id
                 })
             } else {
-                this.logOut()
+                logOut()
             }
         })
+    }, [])
+
+    if (authenticated === null) {
+        return <div>Please wait...</div>
     }
 
-    render() {
-        if (this.state.authenticated === null) {
-            return <div>Please wait...</div>
-        }
-        return (
-            <AuthContext.Provider value={{
-                authenticated: this.state.authenticated,
-                user: this.state.user,
-                logIn: this.logIn,
-                logOut: this.logOut
-            }}>
-                {this.props.children}
-            </AuthContext.Provider>
-        )
-    }
+    return (
+        <AuthContext.Provider value={{
+            authenticated,
+            user,
+            logIn,
+            logOut
+        }}>
+            {props.children}
+        </AuthContext.Provider>
+    )
 }
 
 export default Auth

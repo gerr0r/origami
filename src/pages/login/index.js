@@ -33,7 +33,7 @@ class LoginPage extends React.Component {
         .then(res => {
             let authToken = res.headers.get("Authorization")
             if (!authToken) throw Error("Username or password invalid")
-            document.cookie = `x-auth-token=${authToken}`
+            document.cookie = `x-auth-token=${authToken}; Secure`
             return res.json()
         })
         .then(data => {
