@@ -45,7 +45,7 @@ const ProfilePage = () => {
                 </div>
                 <div>
                     <h2>3 of your recent posts</h2>
-                    <Origamies location="profile" />
+                    <Origamies location="profile" length={"3"}/>
                 </div>
             </div>
         </MainLayout>
