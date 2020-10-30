@@ -1,60 +1,55 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useHistory, useParams } from "react-router-dom"
 import MainLayout from "../../layouts/main/main"
 import img from "../../images/profile_image.svg"
 import Origamies from '../../components/origamies/Origamies'
 import styles from "./index.module.css"
 import AuthContext from '../../authentication/context'
 
-class ProfilePage extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: undefined,
-            posts: 0
-        }
-    }
+const ProfilePage = () => {
+    const context = useContext(AuthContext)
+    const history = useHistory()
+    const params = useParams()
+    const [name, setName] = useState(undefined)
+    const [posts, setPosts] = useState(0)
 
-    static contextType = AuthContext
-
-    getInfo = async (id) => {
+    async function getInfo() {
+        const id = params.uid
         const fetch_ = await fetch(`http://localhost:9999/api/user?id=${id}`)
 
-        if (!fetch_.ok) this.props.history.push("/error")
+        if (!fetch_.ok) history.push("/error")
+
         const data = await fetch_.json()
 
-        this.setState({
-            name: data.username,
-            posts: data.posts.length.toString()
-        })
+        setName(data.username)
+        setPosts(data.posts.length.toString())
     }
 
-    logOut = () => {
-        this.context.logOut()
-        this.props.history.push("/")
+    const logOut = () => {
+        context.logOut()
+        history.push("/")
     }
 
-    componentDidMount() {
-        this.getInfo(this.props.match.params.uid)
-    }
+    useEffect(() => {
+        getInfo()
+    })
 
-    render() {
-        return (
-            <MainLayout>
-                <div className={styles.profile}>
-                    <img src={img} alt="Profile" />
-                    <div className={styles["personal-info"]}>
-                        <p><span>Name: </span>{this.state.name || "Loading..."}</p>
-                        <p><span>Posts: </span>{this.state.posts || "Loading..."}</p>
-                        <button onClick={this.logOut}>Logout</button>
-                    </div>
-                    <div>
-                        <h2>3 of your recent posts</h2>
-                        <Origamies location="profile" />
-                    </div>
+    return (
+        <MainLayout>
+            <div className={styles.profile}>
+                <img src={img} alt="Profile" />
+                <div className={styles["personal-info"]}>
+                    <p><span>Name: </span>{name || "Loading..."}</p>
+                    <p><span>Posts: </span>{posts || "Loading..."}</p>
+                    <button onClick={logOut}>Logout</button>
                 </div>
-            </MainLayout>
-        )
-    }
+                <div>
+                    <h2>3 of your recent posts</h2>
+                    <Origamies location="profile" />
+                </div>
+            </div>
+        </MainLayout>
+    )
 }
 
 export default ProfilePage
