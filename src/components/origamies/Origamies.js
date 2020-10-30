@@ -1,30 +1,18 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Origami from "../origami/Origami"
 import styles from './origamies.module.css'
 
-class Origamies extends React.Component {
-	constructor(props) {
-		super(props)
 
-		this.state = {
-			origamies: []
-		}
-	}
+const Origamies = (props) => {
+	const [origamies, setOrigamies] = useState([])
 
-	getOrigamies = async () => {
-		const data = await fetch("http://localhost:9999/api/origami")
-		const origamies = await data.json()
-		this.setState({
-			origamies
-		})
-	}
+	const getOrigamies = useCallback(async () => {
+		const fetch_ = await fetch(`http://localhost:9999/api/origami?length=${props.length}`)
+		const data = await fetch_.json()
+		setOrigamies(data)
+	},[props.length])
 
-	renderOrigamies = () => {
-		let { origamies } = this.state
-		if (this.props.location === "posts" || this.props.location === "profile") {
-			origamies = origamies.slice(origamies.length - 3);
-		}
-
+	const renderOrigamies = () => {
 		return origamies.map((origami, idx) => {
 			return (
 				<Origami key={origami._id} index={idx} {...origami} />
@@ -32,17 +20,15 @@ class Origamies extends React.Component {
 		})
 	}
 
-	componentDidMount() {
-		this.getOrigamies()
-	}
+	useEffect(() => {
+		getOrigamies()
+	},[getOrigamies, props.update])
 
-	render() {
-		return (
-			<div className={styles.posts}>
-				{this.renderOrigamies()}
-			</div>
-		)
-	}
+	return (
+		<div className={styles.posts}>
+			{renderOrigamies()}
+		</div>
+	)
 }
 
 export default Origamies

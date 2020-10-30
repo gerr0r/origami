@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import AuthContext from "./context"
+import getCookie from "../helpers/auth-cookie"
 
 const Auth = (props) => {
     const [user, setUser] = useState(null)
@@ -14,16 +15,6 @@ const Auth = (props) => {
         setUser(null)
         setAuth(false)
         document.cookie = "x-auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure"
-    }
-
-    const getCookie = (cookie) => {
-        const cookies = {}
-        const cookiesString = document.cookie.split("; ")
-        cookiesString.forEach(c => {
-            let [name, value] = c.split("=")
-            cookies[name] = value
-        })
-        return cookies[cookie]
     }
 
     useEffect(() => {
